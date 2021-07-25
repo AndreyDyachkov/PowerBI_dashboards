@@ -1,3 +1,5 @@
+### Provider management report
+
 Here is an example of a PowerBI dashboard, which I created to analyze the workload of the healthcare provider management department at an insurance company. 
 
 Basically, there are two main types of work:
