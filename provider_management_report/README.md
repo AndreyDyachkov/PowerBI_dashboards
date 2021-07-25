@@ -3,7 +3,6 @@ Here is an example of a PowerBI dashboard, which I created to analyze the worklo
 Basically, there are two main types of work:
 - looking for new clinics and signing contracts with them,
 - performing various tasks created by other departments. 
-You can find pdf  and pbix files here.
 
 Technically, there are some interesting moments:
 1. All measures are collected in the designated table. I believe it looks better. 
@@ -24,4 +23,7 @@ in
 Source
 
 ```
+
+Schema:
+
 
