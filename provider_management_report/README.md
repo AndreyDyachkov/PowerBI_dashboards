@@ -26,4 +26,8 @@ Source
 
 Schema:
 
+![Schema](https://github.com/AndreyDyachkov/PowerBI_dashboards/blob/main/provider_management_report/schema.png)
+
+Originally, most data are collected from SQL Oracle database via ODBC.  
+I provide the pbix file. However, all sensitive information and all personal data were removed.
 
