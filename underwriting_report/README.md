@@ -14,7 +14,7 @@ RETURN
     IF ( duration < 0, 0, duration )
 ```
 Schema:
-![Schema](https://github.com/AndreyDyachkov/PowerBI_dashboards/blob/main/provider_management_report/schema.png)
+![Schema](https://github.com/AndreyDyachkov/PowerBI_dashboards/blob/main/underwriting_report/schema.png)
 Measures are made in a special table. Also, there is a "last refresh" table, that allows us to display the date and time of the last refresh. 
 The table is created in PowerQuery editor:
 ```
