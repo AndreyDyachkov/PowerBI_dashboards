@@ -25,4 +25,4 @@ RETURN
 We define a variable, which is equal to the maximum date for each task_id but is less than the row date. Then we return the difference between the row date and the variable or leave it blank if it’s an initial stage.
 The schema:    
 
-![Schema](https://github.com/AndreyDyachkov/PowerBI_dashboards/blob/main/underwriting_report/schema.png)
+![Schema](https://github.com/AndreyDyachkov/PowerBI_dashboards/blob/main/kanban_board_analytics/schema.png)
