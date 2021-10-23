@@ -38,7 +38,8 @@ GPWforecastvsGPWbudget% = DIVIDE ( [GPWforecast], [GPWbudget], 0 )
 GPWforecastvsGPWLY% = DIVIDE ( [GPWforecast], [GPWLY], 0 )
 ```
 
-The schema: 
+The schema
+
 Budget, actual, and forecast data have different granularity, so they are connected via Data table and dimension tables: Lob(line of business) and Company/individual.   
 
 ![Schema](https://github.com/AndreyDyachkov/PowerBI_dashboards/blob/main/budget_vs_actual/schema.png)
