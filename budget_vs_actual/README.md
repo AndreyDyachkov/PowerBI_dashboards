@@ -41,4 +41,4 @@ GPWforecastvsGPWLY% = DIVIDE ( [GPWforecast], [GPWLY], 0 )
 The schema: 
 Budget, actual, and forecast data have different granularity, so they are connected via Data table and dimension tables: Lob(line of business) and Company/individual.   
 
-
+![Schema](https://github.com/AndreyDyachkov/PowerBI_dashboards/blob/main/kanban_board_analytics/schema.png)
