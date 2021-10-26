@@ -32,7 +32,9 @@ SELECTEDVALUE ( 'expense_ratio'[expense_ratio], "0.16" )
 
 #### Measures
 
-The most interesting one are: GPE and DAC 
+##### GPE and DAC measures
+
+These measures are the most interesting ones. 
 
 ```
 GPE =
@@ -63,12 +65,14 @@ SUMX (
         )
 )
 ```
-GPE calculation:
+Formula:
+
 GPE = GPW*(the number of days an insurance contract is in effect in the reporting period)/(the total number of days the contract is valid)
+
+How to calculate:
 1.	We need to create a Date table that is not connected to the fact table(!)
-2.	GPE Measure:
-1.	SUMMARIZE - creates a table, where data are grouped by Start Date, End Date with SUM aggregation function (measure: GPW). Each client usually has more than one entry in this table, so we combine those rows.
-2.	FILTER excludes contracts that are not in a date range.
+2.	SUMMARIZE - creates a table, where data are grouped by Start Date, End Date with SUM aggregation function (measure: GPW). Each client usually has more than one entry in this table, so we combine those rows.
+2.	FILTER excludes contracts that are not in the date range.
 3.	First COUNTROWS – counts rows in a table of dates when the contract is valid in the period given.
 4.	Second COUNTROWS – count rows in a table of dates when the contract is valid.
 
@@ -101,7 +105,11 @@ SUMX (
         )
 )
 ```
-DAC calculation -is similar to GPE:
+
+DAC calculation is similar to GPE
+
+Formula
+
 DAC = Commission * (the number of days an insurance contract is in effect in the reporting period)/(the total number of days the contract is valid)
 
 
