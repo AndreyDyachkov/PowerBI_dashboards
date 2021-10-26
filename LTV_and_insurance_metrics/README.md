@@ -25,8 +25,87 @@ For each client the dashboard shows major insurance metrics:
 
 #### Expense ratio
 The Expense ratio (the ratio of firm-wide expenses to the total amount of premiums earned over the same period) is required to be corrected manually. So, we generate a list of values (expense_ratio table) and use SELECTEDVALUE function to choose the right one.
-'''
+```
 ExpenseRatio =
 SELECTEDVALUE ( 'expense_ratio'[expense_ratio], "0.16" )
-'''
+```
+
+#### Measures
+
+The most interesting one are: GPE and DAC 
+
+```
+GPE =
+SUMX (
+    FILTER (
+        SUMMARIZE ( 'GPW', 'GPW'[start_date], 'GPW'[end_date], "GPE", [GPW] ),
+        'GPW'[start_date] <= LASTDATE ( 'Date_for_Loss'[Date] )
+            && 'GPW'[end_date] >= FIRSTDATE ( 'Date_for_Loss'[Date] )
+    ),
+    [GPE]
+        * COUNTROWS (
+            DATESBETWEEN (
+                'Date_for_Loss'[Date],
+                IF (
+                    FIRSTDATE ( 'Date_for_Loss'[Date] ) > 'GPW'[start_date],
+                    FIRSTDATE ( 'Date_for_Loss'[Date] ),
+                    'GPW'[start_date]
+                ),
+                IF (
+                    LASTDATE ( 'Date_for_Loss'[Date] ) < 'GPW'[end_date],
+                    LASTDATE ( 'Date_for_Loss'[Date] ),
+                    'GPW'[end_date]
+                )
+            )
+        )
+        / COUNTROWS (
+            DATESBETWEEN ( 'Date_for_Loss'[Date], 'GPW'[start_date], 'GPW'[end_date] )
+        )
+)
+```
+GPE calculation:
+GPE = GPW*(the number of days an insurance contract is in effect in the reporting period)/(the total number of days the contract is valid)
+1.	We need to create a Date table that is not connected to the fact table(!)
+2.	GPE Measure:
+1.	SUMMARIZE - creates a table, where data are grouped by Start Date, End Date with SUM aggregation function (measure: GPW). Each client usually has more than one entry in this table, so we combine those rows.
+2.	FILTER excludes contracts that are not in a date range.
+3.	First COUNTROWS – counts rows in a table of dates when the contract is valid in the period given.
+4.	Second COUNTROWS – count rows in a table of dates when the contract is valid.
+
+```
+DAC =
+SUMX (
+    FILTER (
+        SUMMARIZE ( 'GPW', 'GPW'[start_date], 'GPW'[end_date], "DAC", [Commission] ),
+        'GPW'[start_date] <= LASTDATE ( 'Date_for_Loss'[Date] )
+            && 'GPW'[end_date] >= FIRSTDATE ( 'Date_for_Loss'[Date] )
+    ),
+    [DAC]
+        * COUNTROWS (
+            DATESBETWEEN (
+                'Date_for_Loss'[Date],
+                IF (
+                    FIRSTDATE ( 'Date_for_Loss'[Date] ) > 'GPW'[start_date],
+                    FIRSTDATE ( 'Date_for_Loss'[Date] ),
+                    'GPW'[start_date]
+                ),
+                IF (
+                    LASTDATE ( 'Date_for_Loss'[Date] ) < 'GPW'[end_date],
+                    LASTDATE ( 'Date_for_Loss'[Date] ),
+                    'GPW'[end_date]
+                )
+            )
+        )
+        / COUNTROWS (
+            DATESBETWEEN ( 'Date_for_Loss'[Date], 'GPW'[start_date], 'GPW'[end_date] )
+        )
+)
+```
+DAC calculation -is similar to GPE:
+DAC = Commission * (the number of days an insurance contract is in effect in the reporting period)/(the total number of days the contract is valid)
+
+
+
+
+
 
