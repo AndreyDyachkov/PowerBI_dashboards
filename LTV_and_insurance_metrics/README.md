@@ -113,6 +113,58 @@ Formula
 DAC = Commission * (the number of days an insurance contract is in effect in the reporting period)/(the total number of days the contract is valid)
 
 
+##### Basic measures:
+```
+GPW =
+SUM ( 'GPW'[GPW_final] )
+```
+```
+Loss =
+SUM ( 'claims'[loss] )
+```
+```
+Commission =
+SUM ( 'GPW'[commission] )
+```
+```
+RBNS =
+SUM ( 'RBNS'[RBNS] )
+```
+```
+Refund =
+SUM ( 'GPW'[refund] )
+```
+```
+Years =
+DATEDIFF ( MIN ( 'GPW'[start_date] ), MAX ( 'GPW'[end_date] ), DAY ) / 365
+```
+
+##### Ratios:
+```
+LR =
+DIVIDE ( ( [Loss] + [RBNS] ), [GPE] )
+```
+```
+CommR =
+DIVIDE ( [DAC], [GPE], 0 )
+```
+##### Complex measure:
+```
+CR =
+[LR+CommR] + 'expense_ratio'[ExpenseRatio]
+```
+```
+LR+CommR =
+[LR] + [CommR]
+```
+```
+LTV_per_period =
+[GPE] - [DAC] - [Loss] - [RBNS]
+```
+
+Schema:
+-	3 fact tables: GPW, Claims, and RBNS
+-	2 date tables: (1) for GPE and DAC calculations, and losses; (2) for GPW  
 
 
 
