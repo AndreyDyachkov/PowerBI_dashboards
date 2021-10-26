@@ -165,7 +165,7 @@ LTV_per_period =
 Schema:
 -	3 fact tables: GPW, Claims, and RBNS
 -	2 date tables: (1) for GPE and DAC calculations, and losses; (2) for GPW  
+![Schema](https://github.com/AndreyDyachkov/PowerBI_dashboards/blob/main/LTV_and_insurance_metrics/dependencies.png)
 
-
-
+All sensitive information and all personal data were removed.
 
