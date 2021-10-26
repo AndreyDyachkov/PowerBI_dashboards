@@ -8,3 +8,4 @@ The dashboard shows LTV and basic financial metrics for each client of an insura
 
 All indicators are based on 2 data sources: the amount of insurance premium (GPW) and the losses (Claims and RBNS). Contract_id attribute allows us to connect these data. The insurance company has several lines of business (LoB), such as health insurance, motor insurance etc., and plenty of products in each LoB. The product mapping table helps to assign products to LoB. Data are stored in excel files.
 
+![Schema](https://github.com/AndreyDyachkov/PowerBI_dashboards/blob/main/budget_vs_actual/schema.png)
